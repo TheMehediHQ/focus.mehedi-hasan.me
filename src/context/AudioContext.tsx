@@ -156,13 +156,26 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const onEnded = () => {
       const { repeatMode: rep, isShuffle: shuf, currentTrack: cur } = stateRef.current;
       if (rep === 'one') {
+        // Repeat current track seamlessly
         audio.currentTime = 0;
         audio.play().catch(() => {});
       } else if (rep === 'all' || shuf) {
+        // Auto-play next track (loops indefinitely across library)
         handleNextTrack();
       } else {
-        setIsPlaying(false);
-        setStatus('idle');
+        // If repeat is off: auto-play next tracks until reaching the end of the library
+        if (!cur) {
+          setIsPlaying(false);
+          setStatus('idle');
+          return;
+        }
+        const currentIndex = TRACKS.findIndex((t) => t.id === cur.id);
+        if (currentIndex < TRACKS.length - 1) {
+          handleNextTrack();
+        } else {
+          setIsPlaying(false);
+          setStatus('idle');
+        }
       }
     };
 
