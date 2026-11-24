@@ -29,13 +29,13 @@ export const WelcomeHeader: React.FC = () => {
   return (
     <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-1">
       {/* Left: Greeting & Clock */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
         <LiveClock />
 
         <div className="h-8 w-[1px] bg-white/10 hidden sm:block" />
 
-        <div className="flex flex-col">
-          <h2 className="text-xl sm:text-2xl font-light tracking-tight text-white">
+        <div className="flex flex-col text-left">
+          <h2 className="text-lg sm:text-2xl font-light tracking-tight text-white">
             {greeting}, <span className="font-medium text-zinc-200">flow space</span>.
           </h2>
           <p className="text-xs text-zinc-400 font-light mt-0.5">
@@ -45,14 +45,14 @@ export const WelcomeHeader: React.FC = () => {
       </div>
 
       {/* Right: Quote & Action button */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 w-full sm:w-auto">
         <div className="hidden lg:block">
           <DailyQuote />
         </div>
 
         <button
           onClick={timer.isRunning ? pauseTimer : handleStartSession}
-          className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all duration-200 select-none shadow-md ${
+          className={`w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all duration-200 select-none shadow-md ${
             timer.isRunning
               ? 'bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30'
               : 'bg-gradient-to-r from-sky-400 to-indigo-500 hover:from-sky-300 hover:to-indigo-400 text-dark-950 shadow-sky-500/20 hover:shadow-sky-500/30 active:scale-95'
@@ -61,12 +61,12 @@ export const WelcomeHeader: React.FC = () => {
           {timer.isRunning ? (
             <>
               <Pause className="w-3.5 h-3.5 fill-current" />
-              <span>Pause Focus</span>
+              <span>Pause Session</span>
             </>
           ) : (
             <>
               <Zap className="w-3.5 h-3.5 fill-current" />
-              <span>Start Focus</span>
+              <span>Start Focus Session</span>
             </>
           )}
         </button>

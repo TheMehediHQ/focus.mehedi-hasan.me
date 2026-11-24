@@ -23,7 +23,7 @@ export const KeyboardShortcutsModal: React.FC = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-fade-in"
       onClick={() => setShowShortcutsModal(false)}
       role="dialog"
       aria-modal="true"
@@ -31,7 +31,7 @@ export const KeyboardShortcutsModal: React.FC = () => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-md rounded-3xl bg-dark-900 border border-white/10 p-6 shadow-2xl relative"
+        className="w-full max-w-md mx-2 sm:mx-0 rounded-2xl sm:rounded-3xl bg-dark-900 border border-white/10 p-4 sm:p-6 shadow-2xl relative max-h-[85vh] flex flex-col"
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-3.5 border-b border-white/10">

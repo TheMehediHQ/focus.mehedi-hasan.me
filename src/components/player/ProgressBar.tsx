@@ -20,11 +20,11 @@ export const ProgressBar: React.FC = () => {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  const getTimeFromEvent = useCallback(
-    (e: React.MouseEvent | MouseEvent) => {
+  const getTimeFromClientX = useCallback(
+    (clientX: number) => {
       if (!barRef.current || duration <= 0) return 0;
       const rect = barRef.current.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
+      const clickX = clientX - rect.left;
       const ratio = Math.max(0, Math.min(1, clickX / rect.width));
       return ratio * duration;
     },
@@ -33,16 +33,16 @@ export const ProgressBar: React.FC = () => {
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
-    const newTime = getTimeFromEvent(e);
+    const newTime = getTimeFromClientX(e.clientX);
     setDragTime(newTime);
 
     const onMouseMove = (moveEvent: MouseEvent) => {
-      const movedTime = getTimeFromEvent(moveEvent);
+      const movedTime = getTimeFromClientX(moveEvent.clientX);
       setDragTime(movedTime);
     };
 
     const onMouseUp = (upEvent: MouseEvent) => {
-      const finalTime = getTimeFromEvent(upEvent);
+      const finalTime = getTimeFromClientX(upEvent.clientX);
       seek(finalTime);
       setIsDragging(false);
       window.removeEventListener('mousemove', onMouseMove);
@@ -53,11 +53,36 @@ export const ProgressBar: React.FC = () => {
     window.addEventListener('mouseup', onMouseUp);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 0) return;
+    setIsDragging(true);
+    const newTime = getTimeFromClientX(e.touches[0].clientX);
+    setDragTime(newTime);
+
+    const onTouchMove = (moveEvent: TouchEvent) => {
+      if (moveEvent.touches.length === 0) return;
+      const movedTime = getTimeFromClientX(moveEvent.touches[0].clientX);
+      setDragTime(movedTime);
+    };
+
+    const onTouchEnd = (endEvent: TouchEvent) => {
+      const finalTime =
+        endEvent.changedTouches.length > 0
+          ? getTimeFromClientX(endEvent.changedTouches[0].clientX)
+          : newTime;
+      seek(finalTime);
+      setIsDragging(false);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd);
+  };
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!barRef.current || duration <= 0) return;
-    const rect = barRef.current.getBoundingClientRect();
-    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    setHoverPosition(ratio * duration);
+    setHoverPosition(getTimeFromClientX(e.clientX));
   };
 
   const handleMouseLeave = () => {
@@ -68,8 +93,8 @@ export const ProgressBar: React.FC = () => {
   const progressPercent = duration > 0 ? (displayTime / duration) * 100 : 0;
 
   return (
-    <div className="w-full flex items-center gap-3 select-none">
-      <span className="text-[11px] font-mono text-zinc-400 min-w-[42px] text-right flex-shrink-0">
+    <div className="w-full flex items-center gap-2 sm:gap-3 select-none">
+      <span className="text-[10px] sm:text-[11px] font-mono text-zinc-400 min-w-[34px] sm:min-w-[42px] text-right flex-shrink-0">
         {formatTime(displayTime)}
       </span>
 
@@ -77,13 +102,15 @@ export const ProgressBar: React.FC = () => {
       <div
         ref={barRef}
         onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative group flex-1 h-5 flex items-center cursor-pointer"
+        className="relative group flex-1 h-5 flex items-center cursor-pointer touch-none"
         role="slider"
         aria-valuemin={0}
         aria-valuemax={duration}
         aria-valuenow={displayTime}
+        aria-label="Seek soundscape progress"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'ArrowRight') seek(currentTime + 5);
@@ -101,7 +128,7 @@ export const ProgressBar: React.FC = () => {
         {/* Hover timestamp tooltip */}
         {hoverPosition !== null && (
           <div
-            className="absolute -top-7 px-2 py-0.5 -translate-x-1/2 rounded bg-dark-850 text-[10px] font-mono text-zinc-200 border border-white/10 shadow pointer-events-none"
+            className="absolute -top-7 px-2 py-0.5 -translate-x-1/2 rounded bg-dark-850 text-[10px] font-mono text-zinc-200 border border-white/10 shadow pointer-events-none hidden sm:block"
             style={{ left: `${(hoverPosition / duration) * 100}%` }}
           >
             {formatTime(hoverPosition)}
@@ -117,7 +144,7 @@ export const ProgressBar: React.FC = () => {
         />
       </div>
 
-      <span className="text-[11px] font-mono text-zinc-500 min-w-[42px] text-left flex-shrink-0">
+      <span className="text-[10px] sm:text-[11px] font-mono text-zinc-500 min-w-[34px] sm:min-w-[42px] text-left flex-shrink-0">
         {formatTime(duration)}
       </span>
     </div>

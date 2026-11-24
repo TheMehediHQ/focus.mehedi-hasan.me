@@ -44,26 +44,27 @@ const WorkspaceContent: React.FC = () => {
       <KeyboardShortcutsModal />
 
       {/* Top Modern Header Navigation */}
-      <header className="relative z-20 w-full px-4 sm:px-8 py-3.5 border-b border-white/[0.06] backdrop-blur-md bg-dark-950/60 shadow-sm">
-        <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+      <header className="relative z-20 w-full px-3.5 sm:px-8 py-3 sm:py-3.5 border-b border-white/[0.06] backdrop-blur-md bg-dark-950/60 shadow-sm">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
           {/* Logo & Brand */}
-          <a href="/" className="flex items-center gap-2.5 group select-none">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-400 via-sky-500 to-indigo-500 flex items-center justify-center shadow-md shadow-sky-500/20 text-dark-950 transition-transform group-hover:scale-105">
-              <Headphones className="w-4 h-4 stroke-[2.2]" />
+          <a href="/" className="flex items-center gap-2 sm:gap-2.5 group select-none min-w-0">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-sky-400 via-sky-500 to-indigo-500 flex items-center justify-center shadow-md shadow-sky-500/20 text-dark-950 transition-transform group-hover:scale-105 flex-shrink-0">
+              <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />
             </div>
-            <div className="flex items-baseline font-mono">
-              <span className="text-sm sm:text-base font-semibold tracking-tight text-white group-hover:text-sky-300 transition-colors">
+            <div className="flex items-baseline font-mono truncate">
+              <span className="text-xs sm:text-base font-semibold tracking-tight text-white group-hover:text-sky-300 transition-colors truncate">
                 focus<span className="text-sky-400 font-bold">.</span>mehedi-hasan<span className="text-sky-400 font-bold">.</span>me
               </span>
             </div>
           </a>
 
           {/* Right Action Tools */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
             <button
               onClick={() => setShowShortcutsModal(true)}
               title="Keyboard Shortcuts (?)"
-              className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 transition-all text-xs font-mono"
+              aria-label="Keyboard Shortcuts"
+              className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 transition-all text-xs font-mono hidden md:block"
             >
               <HelpCircle className="w-4 h-4" />
             </button>
@@ -71,7 +72,8 @@ const WorkspaceContent: React.FC = () => {
             <button
               onClick={toggleFullscreenFocus}
               title="Enter Fullscreen Focus Mode (F)"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-zinc-200 hover:text-white border border-white/10 text-xs font-medium transition-all shadow-sm active:scale-95"
+              aria-label="Enter Fullscreen Focus Mode"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-zinc-200 hover:text-white border border-white/10 text-xs font-medium transition-all shadow-sm active:scale-95"
             >
               <Maximize2 className="w-3.5 h-3.5 text-sky-400" />
               <span className="hidden sm:inline-block">Focus Mode</span>
@@ -81,7 +83,7 @@ const WorkspaceContent: React.FC = () => {
       </header>
 
       {/* Main Content Dashboard */}
-      <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 flex flex-col gap-6 pb-32">
+      <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-3.5 sm:px-6 py-4 sm:py-6 flex flex-col gap-6 pb-28 sm:pb-32">
         {/* 1. Header with Clock & Greeting */}
         <WelcomeHeader />
 
@@ -93,7 +95,7 @@ const WorkspaceContent: React.FC = () => {
           </div>
 
           {/* Right Column: Soundscape Library (The 6 Master Tracks) */}
-          <div className="lg:col-span-7 flex flex-col gap-4 p-5 sm:p-6 rounded-3xl bg-dark-900/60 border border-white/[0.08] backdrop-blur-2xl shadow-xl">
+          <div className="lg:col-span-7 flex flex-col gap-4 p-4 sm:p-6 rounded-3xl bg-dark-900/60 border border-white/[0.08] backdrop-blur-2xl shadow-xl">
             <div className="flex items-center justify-between border-b border-white/5 pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-sky-400" />

@@ -30,7 +30,7 @@ export const LiveClock: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col items-center sm:items-start select-none">
+    <div className="flex flex-col items-start select-none">
       <div className="flex items-baseline font-mono tracking-tight text-white drop-shadow-sm">
         <span className="text-3xl sm:text-4xl font-light text-zinc-100">{hours}</span>
         <span className="text-3xl sm:text-4xl font-extralight text-sky-400 mx-0.5 animate-pulse">:</span>

@@ -42,7 +42,7 @@ export const FocusTimer: React.FC = () => {
   };
 
   return (
-    <div className="relative rounded-3xl p-6 sm:p-7 bg-dark-900/60 border border-white/[0.08] backdrop-blur-2xl shadow-2xl flex flex-col items-center">
+    <div className="relative rounded-3xl p-4 sm:p-7 bg-dark-900/60 border border-white/[0.08] backdrop-blur-2xl shadow-2xl flex flex-col items-center">
       {/* Top Header */}
       <div className="w-full flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -60,14 +60,14 @@ export const FocusTimer: React.FC = () => {
       </div>
 
       {/* Preset Selector Tabs */}
-      <div className="flex items-center justify-center gap-1.5 p-1 rounded-2xl bg-white/[0.03] border border-white/5 w-full max-w-xs mb-5">
+      <div className="flex items-center justify-center gap-1 sm:gap-1.5 p-1 rounded-2xl bg-white/[0.03] border border-white/5 w-full max-w-xs mb-4 sm:mb-5">
         {presets.map((p) => {
           const isActive = timer.mode === p.id;
           return (
             <button
               key={p.id}
               onClick={() => setTimerPreset(p.id)}
-              className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-medium transition-all duration-200 ${
+              className={`flex-1 py-1.5 px-2 sm:px-3 rounded-xl text-xs font-medium transition-all duration-200 whitespace-nowrap ${
                 isActive
                   ? 'bg-sky-500/20 text-sky-300 border border-sky-500/30 shadow-sm'
                   : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border border-transparent'
@@ -80,7 +80,7 @@ export const FocusTimer: React.FC = () => {
 
         <button
           onClick={() => setShowCustomModal((prev) => !prev)}
-          className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-medium transition-all duration-200 ${
+          className={`flex-1 py-1.5 px-2 sm:px-3 rounded-xl text-xs font-medium transition-all duration-200 whitespace-nowrap ${
             timer.mode === 'custom'
               ? 'bg-sky-500/20 text-sky-300 border border-sky-500/30 shadow-sm'
               : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border border-transparent'
@@ -126,7 +126,7 @@ export const FocusTimer: React.FC = () => {
       {/* Circular Progress Display */}
       <div className="relative flex items-center justify-center my-1">
         <svg
-          className="w-52 h-52 -rotate-90 transform"
+          className="w-44 h-44 sm:w-52 sm:h-52 -rotate-90 transform"
           viewBox="0 0 180 180"
           aria-hidden="true"
         >
@@ -154,7 +154,7 @@ export const FocusTimer: React.FC = () => {
         </svg>
 
         <div className="absolute flex flex-col items-center justify-center text-center">
-          <span className="font-mono text-4xl sm:text-5xl font-light tracking-tight text-white drop-shadow">
+          <span className="font-mono text-3xl sm:text-5xl font-light tracking-tight text-white drop-shadow">
             {formattedTime}
           </span>
           <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-medium mt-1.5">
@@ -164,7 +164,7 @@ export const FocusTimer: React.FC = () => {
       </div>
 
       {/* Action Controls */}
-      <div className="flex items-center gap-3 mt-5">
+      <div className="flex items-center gap-2.5 sm:gap-3 mt-4 sm:mt-5">
         <button
           onClick={resetTimer}
           title="Reset timer (R)"
@@ -176,7 +176,7 @@ export const FocusTimer: React.FC = () => {
         <button
           onClick={toggleTimer}
           title={timer.isRunning ? 'Pause timer (T)' : 'Start timer (T)'}
-          className={`px-7 py-2.5 rounded-xl font-medium text-xs flex items-center gap-2 transition-all duration-300 shadow-lg ${
+          className={`px-5 sm:px-7 py-2.5 rounded-xl font-medium text-xs flex items-center gap-2 transition-all duration-300 shadow-lg ${
             timer.isRunning
               ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 shadow-amber-500/10'
               : 'bg-gradient-to-r from-sky-400 to-indigo-500 hover:from-sky-300 hover:to-indigo-400 text-dark-950 font-semibold shadow-sky-500/20 active:scale-95'

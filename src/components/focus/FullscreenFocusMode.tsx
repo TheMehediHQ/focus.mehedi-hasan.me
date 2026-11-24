@@ -69,7 +69,7 @@ export const FullscreenFocusMode: React.FC = () => {
   const favorited = currentTrack ? isFavorite(currentTrack.id) : false;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col justify-between p-6 sm:p-10 select-none overflow-hidden bg-dark-950/90 backdrop-blur-md animate-fade-in font-sans">
+    <div className="fixed inset-0 z-50 flex flex-col justify-between p-4 sm:p-8 md:p-10 select-none overflow-y-auto sm:overflow-hidden bg-dark-950/90 backdrop-blur-md animate-fade-in font-sans pb-safe">
       {/* Top Bar */}
       <div
         className={`w-full flex items-center justify-between transition-opacity duration-500 ${
@@ -86,7 +86,7 @@ export const FullscreenFocusMode: React.FC = () => {
         {/* Exit Fullscreen */}
         <button
           onClick={toggleFullscreenFocus}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium border border-white/10 transition-all shadow-lg backdrop-blur-xl"
+          className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium border border-white/10 transition-all shadow-lg backdrop-blur-xl"
         >
           <Minimize2 className="w-3.5 h-3.5 text-sky-400" />
           <span>Exit (ESC)</span>
@@ -94,10 +94,10 @@ export const FullscreenFocusMode: React.FC = () => {
       </div>
 
       {/* Center Hero: Giant Modern Countdown */}
-      <div className="flex flex-col items-center justify-center my-auto">
+      <div className="flex flex-col items-center justify-center my-auto py-4">
         <div className="relative flex items-center justify-center">
           <svg
-            className="w-80 h-80 sm:w-96 sm:h-96 -rotate-90 transform"
+            className="w-56 h-56 sm:w-80 sm:h-80 md:w-96 md:h-96 max-w-[85vw] max-h-[42vh] -rotate-90 transform"
             viewBox="0 0 280 280"
             aria-hidden="true"
           >
@@ -129,30 +129,30 @@ export const FullscreenFocusMode: React.FC = () => {
           </svg>
 
           <div className="absolute flex flex-col items-center justify-center text-center">
-            <span className="font-mono text-6xl sm:text-7xl font-extralight tracking-tight text-white drop-shadow-lg">
+            <span className="font-mono text-4xl sm:text-6xl md:text-7xl font-extralight tracking-tight text-white drop-shadow-lg">
               {formattedTime}
             </span>
-            <span className="text-xs uppercase tracking-widest text-zinc-400 font-medium mt-3">
+            <span className="text-[11px] sm:text-xs uppercase tracking-widest text-zinc-400 font-medium mt-2 sm:mt-3">
               {timer.isRunning ? 'Deep Concentration' : 'Session Paused'}
             </span>
 
             {/* Quick Play/Pause Timer Button */}
             <div
-              className={`flex items-center gap-3 mt-6 transition-opacity duration-300 ${
+              className={`flex items-center gap-3 mt-4 sm:mt-6 transition-opacity duration-300 ${
                 mouseActive ? 'opacity-100' : 'opacity-20 hover:opacity-100'
               }`}
             >
               <button
                 onClick={resetTimer}
                 title="Reset timer"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-zinc-400 hover:text-white border border-white/5 transition-all shadow-sm"
+                className="p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-zinc-400 hover:text-white border border-white/5 transition-all shadow-sm"
               >
-                <RotateCcw className="w-4 h-4" />
+                <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
 
               <button
                 onClick={toggleTimer}
-                className="px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-dark-950 font-semibold text-xs tracking-wider transition-all shadow-lg shadow-sky-500/20"
+                className="px-5 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-dark-950 font-semibold text-xs tracking-wider transition-all shadow-lg shadow-sky-500/20"
               >
                 {timer.isRunning ? 'PAUSE' : 'RESUME'}
               </button>
@@ -164,62 +164,66 @@ export const FullscreenFocusMode: React.FC = () => {
       {/* Bottom Floating Zen Audio Bar */}
       {currentTrack && (
         <div
-          className={`max-w-2xl mx-auto w-full p-4 rounded-3xl bg-dark-900/85 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col gap-3 transition-opacity duration-500 ${
+          className={`max-w-2xl mx-auto w-full p-3 sm:p-4 rounded-2xl sm:rounded-3xl bg-dark-900/85 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col gap-2.5 sm:gap-3 transition-opacity duration-500 ${
             mouseActive ? 'opacity-100' : 'opacity-0 sm:opacity-40 hover:opacity-100'
           }`}
         >
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-3 sm:gap-4">
             {/* Left track info */}
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
               <img
                 src={currentTrack.artwork}
                 alt={currentTrack.title}
-                className="w-10 h-10 rounded-xl object-cover bg-black/40 border border-white/10"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover bg-black/40 border border-white/10 flex-shrink-0"
               />
               <div className="min-w-0">
                 <h4 className="text-xs sm:text-sm font-medium text-white truncate">
                   {currentTrack.title}
                 </h4>
-                <p className="text-[11px] text-zinc-400 truncate">
+                <p className="text-[10px] sm:text-[11px] text-zinc-400 truncate">
                   {currentTrack.categoryName}
                 </p>
               </div>
             </div>
 
             {/* Center controls */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
               <button
                 onClick={prevTrack}
-                className="p-2 text-zinc-400 hover:text-white transition-colors"
+                aria-label="Previous track"
+                className="p-1.5 sm:p-2 text-zinc-400 hover:text-white transition-colors"
               >
-                <SkipBack className="w-4 h-4 fill-current" />
+                <SkipBack className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
               </button>
 
               <button
                 onClick={togglePlay}
-                className="p-2.5 rounded-xl bg-white text-dark-950 hover:bg-sky-400 transition-colors shadow-md"
+                aria-label={isPlaying ? 'Pause' : 'Play'}
+                className="p-2 sm:p-2.5 rounded-xl bg-white text-dark-950 hover:bg-sky-400 transition-colors shadow-md"
               >
                 {isPlaying ? (
-                  <Pause className="w-4 h-4 fill-current" />
+                  <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                 ) : (
-                  <Play className="w-4 h-4 fill-current ml-0.5" />
+                  <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current ml-0.5" />
                 )}
               </button>
 
               <button
                 onClick={nextTrack}
-                className="p-2 text-zinc-400 hover:text-white transition-colors"
+                aria-label="Next track"
+                className="p-1.5 sm:p-2 text-zinc-400 hover:text-white transition-colors"
               >
-                <SkipForward className="w-4 h-4 fill-current" />
+                <SkipForward className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
               </button>
 
               <button
                 onClick={() => toggleFavorite(currentTrack.id)}
-                className={`p-2 transition-colors ${
+                aria-label="Toggle favorite"
+                className={`p-1.5 sm:p-2 transition-colors ${
                   favorited ? 'text-rose-400' : 'text-zinc-500 hover:text-white'
                 }`}
               >
-                <Heart className={`w-4 h-4 ${favorited ? 'fill-current' : ''}`} />
+                <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${favorited ? 'fill-current' : ''}`} />
               </button>
             </div>
           </div>

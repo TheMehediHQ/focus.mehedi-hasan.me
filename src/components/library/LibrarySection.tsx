@@ -24,12 +24,12 @@ export const LibrarySection: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-3.5">
-      {/* Category filter pills bar */}
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
+      {/* Category filter pills bar with horizontal swipe */}
+      <div className="w-full flex items-center justify-between gap-2">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1 -mx-1 px-1 w-full max-w-full flex-nowrap">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex-shrink-0 whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               selectedCategory === 'all'
                 ? 'bg-sky-500/20 text-sky-300 border border-sky-500/30'
                 : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent'
@@ -40,7 +40,7 @@ export const LibrarySection: React.FC = () => {
 
           <button
             onClick={() => setSelectedCategory('favorites')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex-shrink-0 whitespace-nowrap flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
               selectedCategory === 'favorites'
                 ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
                 : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent'
@@ -54,7 +54,7 @@ export const LibrarySection: React.FC = () => {
             <button
               key={c.id}
               onClick={() => setSelectedCategory(c.id)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+              className={`flex-shrink-0 whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
                 selectedCategory === c.id
                   ? 'bg-white/10 text-white border border-white/20'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent'
@@ -65,7 +65,7 @@ export const LibrarySection: React.FC = () => {
           ))}
         </div>
 
-        <span className="text-[11px] font-mono text-zinc-500 hidden sm:inline-block">
+        <span className="text-[11px] font-mono text-zinc-500 hidden md:inline-block flex-shrink-0">
           {filteredTracks.length} {filteredTracks.length === 1 ? 'soundscape' : 'soundscapes'}
         </span>
       </div>
