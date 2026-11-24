@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="fp-fire" cx="50%" cy="85%" r="65%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.8"/>
+      <stop offset="25%" stop-color="#ea580c" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#7c2d12" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#090503" stop-opacity="0.95"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#0a0604"/>
+  <circle cx="960" cy="850" r="650" fill="url(#fp-fire)"/>
+  <!-- Hearth stone surround outline -->
+  <path d="M 600,1080 L 600,650 C 600,480 1320,480 1320,650 L 1320,1080 Z" fill="none" stroke="#271810" stroke-width="12" opacity="0.6"/>
+  <!-- Glowing coals at base -->
+  <ellipse cx="960" cy="980" rx="260" ry="60" fill="#f97316" opacity="0.4"/>
+  <ellipse cx="960" cy="990" rx="180" ry="35" fill="#fbbf24" opacity="0.7"/>
+</svg>

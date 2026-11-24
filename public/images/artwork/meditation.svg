@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="med-bg" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#142624"/>
+      <stop offset="60%" stop-color="#0a1413"/>
+      <stop offset="100%" stop-color="#040807"/>
+    </radialGradient>
+    <radialGradient id="med-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="med-lotus" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#6ee7b7" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="24" fill="url(#med-bg)"/>
+  <circle cx="200" cy="200" r="130" fill="url(#med-glow)"/>
+  <!-- Concentric Zen Rings -->
+  <circle cx="200" cy="200" r="115" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="2 6" opacity="0.4"/>
+  <circle cx="200" cy="200" r="90" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.6"/>
+  <!-- Enso / Lotus petals -->
+  <path d="M 200,120 C 170,160 170,220 200,250 C 230,220 230,160 200,120 Z" fill="url(#med-lotus)"/>
+  <path d="M 200,140 C 150,180 150,230 200,260 C 250,230 250,180 200,140 Z" fill="none" stroke="#6ee7b7" stroke-width="1.5" opacity="0.7"/>
+  <path d="M 150,200 C 160,160 210,180 220,220 C 200,240 160,230 150,200 Z" fill="url(#med-lotus)" opacity="0.5"/>
+  <path d="M 250,200 C 240,160 190,180 180,220 C 200,240 240,230 250,200 Z" fill="url(#med-lotus)" opacity="0.5"/>
+  <circle cx="200" cy="195" r="7" fill="#ecfdf5"/>
+</svg>

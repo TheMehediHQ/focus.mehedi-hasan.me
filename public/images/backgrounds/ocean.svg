@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ocn-sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#081b2e"/>
+      <stop offset="45%" stop-color="#0f2b48"/>
+      <stop offset="70%" stop-color="#0a1a2e"/>
+      <stop offset="100%" stop-color="#030810"/>
+    </linearGradient>
+    <radialGradient id="ocn-moon" cx="50%" cy="30%" r="40%">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0f2b48" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#ocn-sky)"/>
+  <circle cx="960" cy="320" r="180" fill="url(#ocn-moon)"/>
+  <!-- Horizon line -->
+  <line x1="0" y1="580" x2="1920" y2="580" stroke="#38bdf8" stroke-width="1.5" opacity="0.25"/>
+  <!-- Moon reflection on deep water -->
+  <polygon points="960,580 880,1080 1040,1080" fill="#7dd3fc" opacity="0.06"/>
+  <!-- Low wave swells -->
+  <path d="M 0,650 Q 480,630 960,650 T 1920,640 L 1920,1080 L 0,1080 Z" fill="#072036" opacity="0.6"/>
+  <path d="M 0,760 Q 420,735 960,760 T 1920,745 L 1920,1080 L 0,1080 Z" fill="#041524" opacity="0.8"/>
+  <path d="M 0,890 Q 500,860 1020,890 T 1920,870 L 1920,1080 L 0,1080 Z" fill="#020a12"/>
+</svg>
